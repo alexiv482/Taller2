@@ -56,3 +56,57 @@ CREATE TABLE seleccion_ayuda (
     idpunto_atencion INTEGER,
 );
 
+CREATE TABLE punto_atencion (
+    id INTEGER PRIMARY KEY,
+    idseleccion_ayuda INTEGER,
+    idubicacion INTEGER,
+    idinventario INTEGER,
+);
+
+CREATE TABLE entrega (
+    id INTEGER PRIMARY,
+    idpunto_atencion INTEGER,
+    idjornada_entrega INTEGER,
+);
+
+CREATE TABLE jornada_entrega (
+    id INTEGER PRIMARY KEY,
+    nombre VARCHAR(20),
+    fecha DATETIME,
+    lugar VARCHAR(20),
+    descripcion VARCHAR(30),
+);
+
+CREATE TABLE inventario (
+    id INTEGER PRIMARY KEY,
+    idseleccion_ayuda INTEGER,
+    cantidad INTEGER,
+    disponible INTEGER,
+);
+
+CREATE TABLE donacion (
+    id INTEGER PRIMARY KEY,
+    id_donante INTEGER,
+    fecha DATETIME,
+);
+
+CREATE TABLE donante (
+    id INTEGER PRIMARY KEY,
+    tipo_donante ENUM('Natural', 'Juridico'),
+    nombre VARCHAR(40),
+);
+
+CREATE TABLE tipo_ayuda (
+    id INTEGER PRIMARY KEY,
+    categoria ENUM('Alimento', 'Medicamento', 'Aseo'),
+    nombre_articulo VARCHAR(20),
+);
+
+CREATE TABLE detalle_donacion (
+    id INTEGER PRIMARY KEY,
+    iddonacion INTEGER,
+    idtipo_ayuda INTEGER,
+    cantidad INTEGER,
+    unidad_medida INTEGER,
+    idinventario INTEGER,
+)
